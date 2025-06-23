@@ -1,28 +1,4 @@
 repository:
-  name: probot-demo
-  description: Repository managed by Probot
+  name: my-repo
+  description: This is auto-managed by Probot
   private: false
-  has_issues: true
-  has_wiki: false
-  default_branch: main
-  allow_merge_commit: false
-  allow_squash_merge: true
-  allow_rebase_merge: false
-
-branches:
-  - name: main
-    protection:
-      required_status_checks:
-        strict: true
-        contexts: []
-      required_pull_request_reviews:
-        required_approving_review_count: 1
-      enforce_admins: true
-      
-repository:
-  name: probot-demo
-  private: false
-
-collaborators:
-  - username: raghava-bandla
-    permission: push
