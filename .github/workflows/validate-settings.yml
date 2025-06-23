@@ -1,0 +1,34 @@
+name: Validate Probot settings.yml
+
+on:
+  push:
+    paths:
+      - ".github/settings.yml"
+
+jobs:
+  validate-settings:
+    runs-on: ubuntu-latest
+    name: Validate Probot settings.yml
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install yamllint
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yamllint
+
+      - name: Run yamllint on settings.yml
+        run: |
+          yamllint .github/settings.yml
+
+      - name: Check required keys
+        run: |
+          REQUIRED_KEYS=("repository" "branches")
+          for key in "${REQUIRED_KEYS[@]}"; do
+            grep -q "^$key:" .github/settings.yml || {
+              echo "ERROR: Missing required key '$key' in settings.yml"
+              exit 1
+            }
+          done
