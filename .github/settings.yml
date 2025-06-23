@@ -18,3 +18,11 @@ branches:
       required_pull_request_reviews:
         required_approving_review_count: 1
       enforce_admins: true
+      
+repository:
+  name: probot-demo
+  private: false
+
+collaborators:
+  - username: raghava-bandla
+    permission: push
