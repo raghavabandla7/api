@@ -1,4 +1,3 @@
-
 repository:
   name: api
   description: repository with branch protection
@@ -8,12 +7,12 @@ repository:
   has_wiki: false
 
 branches:
-  - name: develop
+  - name: main
     protection:
       required_status_checks:                 # Requires specific CI checks to pass before allowing merge
         strict: true                          # Requires PRs to be up-to-date before merging
         contexts:                             # What workflow should i add 
-          - deploy-all-services-to-cloud-run 
+          - validate-settings.yml 
       enforce_admins: true                    # Even admins must follow the rules
       required_pull_request_reviews:
         dismissal_restrictions: {}
