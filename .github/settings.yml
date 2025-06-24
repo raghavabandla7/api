@@ -1,63 +1,20 @@
 ---
-repository:
-  name: api
-  description: Sample repo with Probot settings
-  homepage: https://github.com/raghavabandla7/api
-  topics: github, probot
-  private: false
-  has_issues: true
-  has_projects: true
-  has_wiki: true
-  has_downloads: true
-  default_branch: main
-  allow_squash_merge: true
-  allow_merge_commit: true
-  allow_rebase_merge: true
-  delete_branch_on_merge: true
-  enable_automated_security_fixes: true
-  enable_vulnerability_alerts: true
-
-labels:
-  - name: bug
-    color: CC0000
-    description: An issue with the system 🐛.
-
-  - name: feature
-    color: '#336699'
-    description: New functionality.
-
-  - name: Help Wanted
-    new_name: first-timers-only
-
-milestones:
-  - title: milestone-title
-    description: milestone-description
-    state: open
-
-collaborators: []
-
-teams:
-  - name: core
-    permission: admin
-  - name: docs
-    permission: push
-
 branches:
-  - name: master
+  - name: main
     protection:
-      required_pull_request_reviews:
-        required_approving_review_count: 1
-        dismiss_stale_reviews: true
-        require_code_owner_reviews: true
-        dismissal_restrictions:
-          users: []
-          teams: []
       required_status_checks:
         strict: true
         contexts: -validate-settings.yml
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: true
+        require_code_owner_reviews: false
+        dismissal_restrictions:
+          users: []
+          teams: []
       enforce_admins: true
       required_linear_history: true
       restrictions:
-        apps: []
         users: []
         teams: []
+        apps: []
