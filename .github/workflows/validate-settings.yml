@@ -23,12 +23,12 @@ jobs:
         run: |
           yamllint .github/settings.yml
 
-      - name: Check required keys
+      - name: Check required top-level keys
         run: |
           REQUIRED_KEYS=("repository" "branches")
           for key in "${REQUIRED_KEYS[@]}"; do
-            grep -q "^$key:" .github/settings.yml || {
-              echo "ERROR: Missing required key '$key' in settings.yml"
+            if ! grep -Eq "^\s*${key}:" .github/settings.yml; then
+              echo "❌ ERROR: Missing required key '${key}' in settings.yml"
               exit 1
-            }
+            fi
           done
