@@ -1,4 +1,23 @@
+
 repository:
-  name: my-repo
-  description: This is auto-managed by Probot
-  private: false
+  name: api
+  description: repository with branch protection
+  private: true
+  has_issues: true
+  has_projects: false
+  has_wiki: false
+
+branches:
+  - name: develop
+    protection:
+      required_status_checks:                 # Requires specific CI checks to pass before allowing merge
+        strict: true                          # Requires PRs to be up-to-date before merging
+        contexts:                             # What workflow should i add 
+          - deploy-all-services-to-cloud-run 
+      enforce_admins: true                    # Even admins must follow the rules
+      required_pull_request_reviews:
+        dismissal_restrictions: {}
+        dismiss_stale_reviews: true           # If new commits are pushed, older reviews are dismissed
+        require_code_owner_reviews: true      # Requires review from code owners
+        required_approving_review_count: 1    # Minimum number of approving reviews before merge
+      restrictions: null                      # Who can push: null = everyone who has write access
