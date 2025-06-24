@@ -1,28 +1,23 @@
+---
 name: Validate Probot settings.yml
-
 on:
   push:
     paths:
-      - ".github/settings.yml"
-
+      - .github/settings.yml
 jobs:
   validate-settings:
     runs-on: ubuntu-latest
     name: Validate Probot settings.yml
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Install yamllint
         run: |
           sudo apt-get update
           sudo apt-get install -y yamllint
-
       - name: Run yamllint on settings.yml
         run: |
           yamllint .github/settings.yml
-
       - name: Check required top-level keys
         run: |
           REQUIRED_KEYS=("repository" "branches")
